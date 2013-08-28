@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="rz_exam.admin.exam" class="%rz_exam.admin.exam.class%">
+            <tag name="sonata.admin"
+                 manager_type="orm"
+                 group="rz_exam"
+                 label="Exam"
+                 label_catalogue="%rz_exam.admin.exam.translation_domain%"
+                 label_translator_strategy="sonata.admin.label.strategy.underscore"/>
+            <argument />
+            <argument>%rz_exam.admin.exam.entity%</argument>
+            <argument>%rz_exam.admin.exam.controller%</argument>
+
+            <!--<call method="addChild">-->
+            <!--<argument type="service" id="rz_exam.admin.tutorial_item" />-->
+            <!--</call>-->
+
+            <call method="setTranslationDomain">
+                <argument>%rz_exam.admin.exam.translation_domain%</argument>
+            </call>
+
+        </service>
+
+        <service id="rz_exam.admin.question" class="%rz_exam.admin.question.class%">
+            <tag name="sonata.admin"
+                 manager_type="orm"
+                 group="rz_exam"
+                 label="Question"
+                 label_catalogue="%rz_exam.admin.question.translation_domain%"
+                 label_translator_strategy="sonata.admin.label.strategy.underscore"/>
+            <argument />
+            <argument>%rz_exam.admin.question.entity%</argument>
+            <argument>%rz_exam.admin.question.controller%</argument>
+
+            <call method="addChild">
+                <argument type="service" id="rz_exam.admin.answers" />
+            </call>
+
+            <call method="setTranslationDomain">
+                <argument>%rz_exam.admin.question.translation_domain%</argument>
+            </call>
+
+        </service>
+
+        <service id="rz_exam.admin.answers" class="%rz_exam.admin.answers.class%">
+            <tag name="sonata.admin"
+                 manager_type="orm"
+                 group="rz_exam"
+                 label="Answers"
+                 label_catalogue="%rz_exam.admin.answers.translation_domain%"
+                 label_translator_strategy="sonata.admin.label.strategy.underscore"/>
+            <argument />
+            <argument>%rz_exam.admin.answers.entity%</argument>
+            <argument>%rz_exam.admin.answers.controller%</argument>
+
+            <call method="setTranslationDomain">
+                <argument>%rz_exam.admin.answers.translation_domain%</argument>
+            </call>
+
+        </service>
+
+        <service id="rz_exam.admin.exam_has_questions" class="%rz_exam.admin.exam_has_questions.class%">
+            <tag name="sonata.admin"
+                 manager_type="orm"
+                 show_in_dashboard="false"
+                 group="rz_exam"
+                 label="Exam Has Questions"
+                 label_catalogue="%rz_exam.admin.exam_has_questions.translation_domain%"
+                 label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument />
+            <argument>%rz_exam.admin.exam_has_questions.entity%</argument>
+            <argument>%rz_exam.admin.exam_has_questions.controller%</argument>
+
+            <call method="setTranslationDomain">
+                <argument>%rz_exam.admin.exam_has_questions.translation_domain%</argument>
+            </call>
+
+        </service>
+    </services>
+
+</container>
